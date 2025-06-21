@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoodMate – Your Mood Recommender</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 30px;
+      transition: background-color 0.5s ease;
+    }
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    select, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    .recommendation {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .quote {
+      font-style: italic;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎵 MoodMate</h1>
+  <p>Select your mood and get music + quote suggestions!</p>
+
+  <select id="moodSelect">
+    <option value="happy">😊 Happy</option>
+    <option value="sad">😢 Sad</option>
+    <option value="angry">😠 Angry</option>
+    <option value="relaxed">😌 Relaxed</option>
+    <option value="motivated">💪 Motivated</option>
+  </select>
+  <button onclick="showSuggestions()">Get Suggestions</button>
+
+  <div class="recommendation" id="output"></div>
+
+  <script>
+    const moodData = {
+      happy: {
+        song: "https://youtu.be/hN4f9POjgEk?si=B9pbiFXO5vYDLp29", // Happy - Pharrell Williams
+        quote: "Happiness is not by chance, but by choice."
+      },
+      sad: {
+        song: "https://youtu.be/1BKbzZhvUAI?si=PY7WWq8keDnPg9un", // Fix You - Coldplay
+        quote: "Tough times don’t last, but tough people do."
+      },
+      angry: {
+        song: "https://youtu.be/8afBXZawfQw?si=Fvs31dAajkG7vR1f", // Lose Yourself - Eminem
+        quote: "For every minute you remain angry, you give up sixty seconds of peace."
+      },
+      relaxed: {
+        song: "https://youtu.be/eNWkgHM6vm4?si=vM6Vg4jZUtFTJstV", // Peaceful Piano
+        quote: "Relax, refresh, recharge."
+      },
+      motivated: {
+        song: "https://youtu.be/-hm5oh0o12o?si=PSRAOVknq_y8tK2V", // Best Motivational Video
+        quote: "Push yourself, because no one else is going to do it for you."
+      }
+    };
+
+    function showSuggestions() {
+      const mood = document.getElementById("moodSelect").value;
+      const data = moodData[mood];
+
+      document.body.style.backgroundColor = {
+        happy: "#fffae6",
+        sad: "#e0f7fa",
+        angry: "#ffebee",
+        relaxed: "#e8f5e9",
+        motivated: "#fff3e0"
+      }[mood] || "#ffffff";
+
+      const output = `🎶 Music Suggestion: <a href="${data.song}" target="_blank">Click to Listen</a><br><br>
+                      💬 Quote: <span class="quote">"${data.quote}"</span>`;
+      document.getElementById("output").innerHTML = output;
+    }
+  </script>
+</body>
+</html>
